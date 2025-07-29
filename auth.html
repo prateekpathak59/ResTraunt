@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login / Sign Up – Pathak's Restaurant</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 2rem;
+      max-width: 400px;
+      margin: 5rem auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #000;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #ffddc1;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #fff;
+      color: #333;
+    }
+
+    button {
+      padding: 0.75rem;
+      font-size: 1rem;
+      background-color: #ff6347;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e5533d;
+    }
+
+    .toggle {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .toggle a {
+      color: #ffb085;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h1 id="form-title">Login to Pathak's Restaurant</h1>
+
+    <!-- Login Form -->
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+
+    <!-- Sign Up Form -->
+    <form id="signup-form" class="hidden" onsubmit="handleSignup(event)">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <div class="toggle">
+      <p id="toggle-text">
+        Don't have an account? <a onclick="toggleForm()">Sign up</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const formTitle = document.getElementById('form-title');
+    const toggleText = document.getElementById('toggle-text');
+
+    function toggleForm() {
+      const isLoginVisible = !loginForm.classList.contains('hidden');
+      loginForm.classList.toggle('hidden');
+      signupForm.classList.toggle('hidden');
+
+      formTitle.textContent = isLoginVisible ? "Create Account" : "Login to Pathak's Restaurant";
+      toggleText.innerHTML = isLoginVisible
+        ? 'Already have an account? <a onclick="toggleForm()">Login</a>'
+        : 'Don\'t have an account? <a onclick="toggleForm()">Sign up</a>';
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+      // You can add real authentication here later
+      window.location.href = "index.html";
+    }
+
+    function handleSignup(event) {
+      event.preventDefault();
+      alert("Account created successfully!");
+      toggleForm();
+    }
+  </script>
+
+</body>
+</html>
